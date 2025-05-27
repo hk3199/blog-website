@@ -1,0 +1,12 @@
+# Node backend
+Blog-backend/node_modules/
+Blog-backend/.env
+
+# Angular frontend
+Blog-frontend/node_modules/
+Blog-frontend/dist/
+Blog-frontend/.angular/
+
+# System
+.DS_Store
+
