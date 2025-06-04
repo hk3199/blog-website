@@ -1,0 +1,110 @@
+<header class="navbar">
+  <nav class="navbar-center">
+    <a routerLink="/blogs">Home</a>
+    <a routerLink="/create-blog">Create</a>
+    <a routerLink="/my-blogs">My Blogs</a>
+  </nav>
+
+  <div class="navbar-right" *ngIf="user">
+    <div class="user-icon-container" (click)="toggleDropdown()" tabindex="0">
+      <span class="material-icons">account_circle</span>
+    </div>
+
+    <div class="dropdown" *ngIf="dropdownVisible">
+      <div class="dropdown-username">Hi {{ user.username }}!</div>
+      <a routerLink="/profile">Profile Settings</a>
+      <a (click)="logout()">Logout</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero-section">
+  <img src="https://media.istockphoto.com/id/1086352374/photo/minimal-work-space-creative-flat-lay-photo-of-workspace-desk-top-view-office-desk-with-laptop.jpg?s=612x612&w=0&k=20&c=JYBNQsgeO13lU1rq3kUWfD-W0Xii3sFyYzijvsntplY=" alt="Banner" class="hero-bg" />
+  
+  <div class="overlay-text">
+    <h1 class="hero-title">Welcome to the Blog</h1>
+    <p class="hero-subtitle">Discover articles, insights, and more.</p>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="blog-section">
+    <div class="blog-header">
+      <h2 class="blog-main-title">All Blogs ({{ totalBlogs }})</h2>
+      <div class="pagination-controls" *ngIf="totalPages > 1">
+        <button
+          mat-raised-button
+          (click)="prevPage()"
+          [disabled]="currentPage === 1"
+        >
+          Previous
+        </button>
+
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+        <button
+          mat-raised-button
+          (click)="nextPage()"
+          [disabled]="currentPage === totalPages"
+        >
+          Next
+        </button>
+      </div>
+
+      <button
+        mat-raised-button
+        color="accent"
+        class="create-btn"
+        routerLink="/create-blog"
+      >
+        <mat-icon color="accent" class="create-icon">add</mat-icon>
+        Create Blog
+      </button>
+    </div>
+
+    <div *ngIf="loading" class="spinner">
+      <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+    </div>
+
+    <div *ngIf="error" class="error">
+      <mat-icon color="warn">error_outline</mat-icon>
+      <p>{{ error }}</p>
+    </div>
+
+    <div *ngIf="!loading && blogs.length === 0" class="no-blogs">
+      <mat-icon>info</mat-icon>
+      <p>No blogs available.</p>
+    </div>
+
+    <div *ngFor="let blog of blogs" class="blog-card-wrapper">
+      <mat-card class="blog-card">
+        <mat-card-title class="blog-title">{{ blog.title }}</mat-card-title>
+        <mat-card-subtitle class="blog-meta">
+          By {{ blog.createdBy?.email || "Unknown" }} •
+          {{ blog.createdAt | date : "medium" }}
+        </mat-card-subtitle>
+        <mat-card-content class="blog-content">
+          <p>{{ blog.content | slice : 0 : 200 }}...</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/blog', blog._id]"
+          >
+            Read More
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <h3 class="sidebar-title">My Blogs ({{ myBlogsCount }})</h3>
+    <ul class="blog-links">
+      <li *ngFor="let blog of myBlogs">
+        <a [routerLink]="['/blog', blog._id]">{{ blog.title }}</a>
+      </li>
+    </ul>
+  </aside>
+</div>

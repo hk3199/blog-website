@@ -1,0 +1,102 @@
+<header class="navbar">
+  <nav class="navbar-center">
+    <a routerLink="/blogs">Home</a>
+    <a routerLink="/create-blog">Create</a>
+    <a routerLink="/my-blogs">My Blogs</a>
+  </nav>
+
+  <div class="navbar-right" *ngIf="user">
+    <div class="user-icon-container" (click)="toggleDropdown()" tabindex="0">
+      <span class="material-icons">account_circle</span>
+    </div>
+
+    <div class="dropdown" *ngIf="dropdownVisible">
+      <div class="dropdown-username">Hi {{ user.username }}!</div>
+      <a routerLink="/profile">Profile Settings</a>
+      <a (click)="logout()">Logout</a>
+    </div>
+  </div>
+</header>
+<div class="profile-container">
+  <div
+    class="banner"
+    [ngStyle]="{ 'background-image': blogBanner ? 'url(' + blogBanner + ')' : 'none' }"
+  ></div>
+
+  <div class="profile-info">
+    <h2>Profile Info</h2>
+
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    <div *ngIf="!editMode">
+      <p><strong>Blog Title:</strong> {{ blogTitle || 'N/A' }}</p>
+      <p><strong>Description:</strong> {{ blogDescription || 'N/A' }}</p>
+      <p><strong>Total Blogs:</strong> {{ myBlogCount }}</p>
+      <button (click)="toggleEdit()">Edit Profile</button>
+    </div>
+
+    <div *ngIf="editMode">
+      <label>Blog Title:</label>
+      <input type="text" [(ngModel)]="blogTitle" />
+
+      <label>Blog Description:</label>
+      <textarea [(ngModel)]="blogDescription"></textarea>
+
+      <label>Banner Image URL:</label>
+      <input type="text" [(ngModel)]="blogBanner" />
+
+      <button (click)="saveProfile()">Save</button>
+      <button (click)="toggleEdit()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="profile-container" *ngIf="!loading; else loadingTpl">
+  <div class="banner" [ngStyle]="{'background-image': 'url(' + user.blogBanner + ')'}">
+    <div class="profile-image">
+      <mat-icon>account_circle</mat-icon>
+    </div>
+  </div>
+
+  <div class="profile-content">
+    <h2>{{ user.blogTitle || 'My Blog Title' }}</h2>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Description:</strong> {{ user.blogDescription || 'No description yet.' }}</p>
+    <p><strong>Total Blogs:</strong> {{ myBlogCount }}</p>
+
+    <button mat-button color="primary" (click)="toggleEdit()">
+      {{ editMode ? 'Cancel' : 'Edit Profile' }}
+    </button>
+
+    <div *ngIf="editMode" class="edit-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Blog Title</mat-label>
+        <input matInput [(ngModel)]="user.blogTitle" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Blog Description</mat-label>
+        <textarea matInput rows="3" [(ngModel)]="user.blogDescription"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Banner Image URL</mat-label>
+        <input matInput [(ngModel)]="user.blogBanner" />
+      </mat-form-field>
+
+      <button mat-raised-button color="accent" (click)="saveProfile()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<div *ngIf="error" class="error-message">
+  {{ error }}
+</div> -->

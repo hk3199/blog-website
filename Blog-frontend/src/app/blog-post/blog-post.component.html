@@ -1,0 +1,154 @@
+<!-- <header class="navbar">
+  <nav class="navbar-center">
+    <a routerLink="/blogs">Home</a>
+    <a routerLink="/create-blog">Create</a>
+    <a routerLink="/about">About</a>
+  </nav>
+
+  <div class="navbar-right">
+    <a routerLink="/login">LogOut</a>
+  </div>
+</header> -->
+<header class="navbar">
+  <nav class="navbar-center">
+    <a routerLink="/blogs">Home</a>
+    <a routerLink="/create-blog">Create</a>
+    <a routerLink="/my-blogs">My Blogs</a>
+  </nav>
+
+  <div class="navbar-right" *ngIf="user">
+    <div class="user-icon-container" (click)="toggleDropdown()" tabindex="0">
+      <span class="material-icons">account_circle</span>
+    </div>
+
+    <div class="dropdown" *ngIf="dropdownVisible">
+      <div class="dropdown-username">Hi {{ user.username }}!</div>
+      <a routerLink="/profile">Profile Settings</a>
+      <a (click)="logout()">Logout</a>
+    </div>
+  </div>
+</header>
+
+<mat-card class="blog-post-form">
+  <h2>{{ isEditMode ? 'Edit Blog' : 'Create a New Blog' }}</h2>
+
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Content</mat-label>
+      <textarea matInput rows="6" formControlName="content"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="postForm.invalid">
+      {{ isEditMode ? 'Update Blog' : 'Post Blog' }}
+    </button>
+  </form>
+</mat-card>
+<!-- 
+
+<div class="container">
+  <h2>{{ isEditMode ? 'Edit Blog' : 'Create Blog' }}</h2>
+
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="image-preview" *ngIf="imagePreview">
+      <img [src]="imagePreview" alt="Preview" />
+    </div>
+
+    <input type="file" (change)="onImageSelected($event)" accept="image/*" />
+
+    <label for="title">Title</label>
+    <input id="title" type="text" formControlName="title" />
+
+    <label for="content">Content</label>
+    <textarea id="content" rows="8" formControlName="content"></textarea>
+
+    <button type="submit" [disabled]="postForm.invalid">
+      {{ isEditMode ? 'Update' : 'Post' }}
+    </button>
+  </form>
+</div> -->
+
+
+
+<!-- <mat-card class="blog-post-form">
+  <h2>{{ isEditMode ? 'Edit Blog' : 'Create a New Blog' }}</h2> -->
+
+  <!-- Blog Image Upload -->
+  <!-- <div class="image-upload-container" (click)="imageInput.click()">
+    <img
+      *ngIf="previewUrl; else placeholder"
+      [src]="previewUrl"
+      class="blog-image-preview"
+      alt="Blog Image"
+    />
+    <ng-template #placeholder>
+      <div class="image-placeholder">Click to upload image</div>
+    </ng-template>
+    <input
+      type="file"
+      accept="image/*"
+      hidden
+      #imageInput
+      (change)="onImageSelected($event)"
+    />
+  </div> -->
+<!-- 
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Content</mat-label>
+      <textarea matInput rows="6" formControlName="content"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="postForm.invalid">
+      {{ isEditMode ? 'Update Blog' : 'Post Blog' }}
+    </button>
+  </form>
+</mat-card> -->
+
+<!-- <mat-card class="blog-post-form">
+  <h2>{{ isEditMode ? 'Edit Blog' : 'Create a New Blog' }}</h2>
+
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Content</mat-label>
+      <textarea matInput rows="6" formControlName="content"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="postForm.invalid">
+      {{ isEditMode ? 'Update Blog' : 'Post Blog' }}
+    </button>
+  </form>
+</mat-card> -->
+
+<!-- <mat-card class="blog-post-form">
+  <h2>Create a New Blog</h2>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Content</mat-label>
+      <textarea matInput rows="6" formControlName="content"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="postForm.invalid">
+      Post Blog
+    </button>
+  </form>
+</mat-card> -->

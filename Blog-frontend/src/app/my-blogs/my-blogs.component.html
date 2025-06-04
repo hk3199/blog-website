@@ -1,0 +1,64 @@
+<header class="navbar">
+  <nav class="navbar-center">
+    <a routerLink="/blogs">Home</a>
+    <a routerLink="/create-blog">Create</a>
+    <a routerLink="/my-blogs">My Blogs</a>
+  </nav>
+
+  <div class="navbar-right" *ngIf="user">
+    <div class="user-icon-container" (click)="toggleDropdown()" tabindex="0">
+      <span class="material-icons">account_circle</span>
+    </div>
+
+    <div class="dropdown" *ngIf="dropdownVisible">
+      <div class="dropdown-username">Hi {{ user.username }}!</div>
+      <a routerLink="/profile">Profile Settings</a>
+      <a (click)="logout()">Logout</a>
+    </div>
+  </div>
+</header>
+<!-- Navbar -->
+<!-- <header class="navbar">
+  <nav class="navbar-center">
+    <a routerLink="/blogs">Home</a>
+    <a routerLink="/create-blog">Create</a>
+    <a routerLink="/about">About</a>
+  </nav>
+  <div class="navbar-right" *ngIf="user">
+    <div class="user-dropdown" (click)="toggleDropdown()" tabindex="0">
+      <span>{{ user.email }}</span>
+      <div class="dropdown" *ngIf="dropdownVisible">
+        <a routerLink="/profile">Profile</a>
+        <a routerLink="/my-blogs">My Blogs</a>
+        <a (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </div>
+</header> -->
+
+<!-- Banner -->
+<div class="banner" [ngStyle]="{ 'background-image': 'url(' + blogBanner + ')' }">
+  <div class="overlay">
+    <h1>{{ blogTitle }}</h1>
+    <p>{{ blogDescription }}</p>
+    <p class="author-name">by {{ username || 'Unknown Author' }}</p>
+  </div>
+</div>
+
+<!-- Blog List -->
+<div class="blogs-container">
+  <div *ngIf="loading" class="loading">Loading blogs...</div>
+
+  <div *ngIf="!loading && blogs.length === 0" class="no-blogs">
+    <p>No blogs created yet.</p>
+  </div>
+
+  <div *ngIf="!loading && blogs.length > 0" class="blogs-grid">
+    <div class="blog-card" *ngFor="let blog of blogs">
+      <h3>{{ blog.title }}</h3>
+      <small class="created-at">Created on: {{ blog.createdAt | date: 'mediumDate' }}</small>
+      <p>{{ blog.content | slice:0:120 }}...</p>
+      <a [routerLink]="['/blog', blog._id]" class="read-more">Read More</a>
+    </div>
+  </div>
+</div>

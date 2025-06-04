@@ -1,0 +1,24 @@
+<div class="blog-detail-container">
+    <mat-card class="blog-detail-card">
+      <mat-card-title class="blog-title">{{ blog?.title }}</mat-card-title>
+  
+      <mat-card-subtitle class="blog-meta">
+        By {{ blog?.createdBy?.email || 'Unknown' }} • {{ blog?.createdAt | date: 'medium' }}
+      </mat-card-subtitle>
+  
+      <mat-card-content class="blog-content">
+        <p>{{ blog?.content }}</p>
+      </mat-card-content>
+      <div class="edit-button" align="end" *ngIf="isOwner()">
+        <button mat-raised-button color="accent" [routerLink]="['/blog/edit', blog?._id]">
+          Edit Blog
+        </button>
+      </div>
+      <div class="delete-button" align="end" *ngIf="isOwner()">
+        <button mat-raised-button color="accent" type="ondelete" (click)="onDelete(blog?._id)" [routerLink]="['/blogs']">
+          Delete Blog
+        </button>
+      </div>
+    </mat-card>
+  </div>
+  

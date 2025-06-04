@@ -1,0 +1,107 @@
+.profile-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.banner {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}
+
+.profile-info {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  margin: 0.5rem 0 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  margin-right: 0.5rem;
+}
+
+/* .user-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.dropdown a {
+  display: block;
+  padding: 8px;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown a:hover {
+  background-color: #f0f0f0;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1976d2;
+  padding: 10px 20px;
+  color: white;
+}
+
+.navbar-center a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.navbar-right {
+  position: relative;
+  cursor: pointer;
+}
+
+.user-email {
+  font-weight: bold;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  color: black;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  min-width: 150px;
+  margin-top: 8px;
+  z-index: 1000;
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown a:hover {
+  background-color: #eee;
+} */
